@@ -1,3 +1,10 @@
-<?php
+@extends('layout')
 
-echo "Hola Mundo";
+@section('prueba')
+	<?php
+		echo "Hello World"
+	?>
+@endsection
+
+
+

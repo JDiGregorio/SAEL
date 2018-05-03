@@ -8,6 +8,6 @@ class PaginaCrudController extends CrudController
 {
     public function index()
     {
-		return view('index');
+	return view('index');
     }
 }
