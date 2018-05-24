@@ -16,6 +16,7 @@
 <!--<li><a href="{{ backpack_url('example 3')."/command" }}"><i class="fa fa-bullhorn"></i> <span>comandos</span></a></li>-->
 
 <li><a href="{{backpack_url('page') }}"><i class="fa fa-file-o"></i> <span>Pages</span></a></li>
+<li><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/menu-item') }}"><i class="fa fa-list"></i> <span>Menu</span></a></li>
 
 <li class="treeview">
     <a href="#"><i class="fa fa-newspaper-o"></i> <span>Noticias</span> <i class="fa fa-angle-left pull-right"></i></a>

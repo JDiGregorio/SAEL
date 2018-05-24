@@ -176,6 +176,13 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+		
+		/*
+         * Agragados por JD Service Providers...
+         */
+		Cviebrock\EloquentSluggable\ServiceProvider::class, 
+		Backpack\PageManager\PageManagerServiceProvider::class,
+		Backpack\MenuCRUD\MenuCRUDServiceProvider::class,
 
     ],
 

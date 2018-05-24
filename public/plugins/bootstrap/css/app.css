@@ -1,19 +1,17 @@
-
-nav{
-		position: absolute;
-		 left: 30%;
-		  top: 25%;
-		 transform: translatex(-20%);
+	nav{
+		position: relative;
+		padding: 5% 0;
+		left: 50%;
+		transform: translatex(-35%);
 	}
-	
+
 	nav ul ul {
-		display: none;
+		display: none;		
 	}
 
 	nav ul li:hover > ul {
 		display: block;
-	}
-	
+	}	
 	nav ul {
 		box-shadow: 10px 10px 10px rgba(0,0,0,0.15);
 		padding: 0 20px;
@@ -70,22 +68,21 @@ nav{
 	
 	nav ul ul ul {
 		position: absolute; left: 100%; top:0;
+	} 
+ 
+	body > footer{
+		background: #666;
 	}
-	
-	.section { 
-		border: 2px solid #CCC;
-		padding: 1em 1em;
-		margin: 1em 0 1em 4em;
-		width: 1000px;
-		height: 600px;
-		position: absolute;
-		left: 28%;
-		top: 35%;
-		transform: translatex(-24%);
+ 
+	body{
+		color: #FFF;
 	}
-	
-	
-	
-	
-	
-	
+
+	.cuerpo{
+		background: yellow;
+		margin: 1rem;
+		padding: 1rem;
+		text-align: center;
+		color: orange;
+		font-size: 2rem;
+	}

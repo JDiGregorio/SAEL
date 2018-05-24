@@ -7,9 +7,13 @@
 
         <title>Laravel</title>
 
-        <!-- Fonts -->
+        <!-- Fonts & CSS -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
+		
+		<link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.css') }}"> 
+		<link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap-theme.min') }}"> 
+		<link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/app.css') }}">
+		
         <!-- Styles -->
         <style>
             html, body {
@@ -65,6 +69,27 @@
         </style>
     </head>
     <body>
+	
+	<header>
+		<!-- Este será nuestro encabezado de página -->
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<?php
+							@foreach ($menus as $key => $item)
+								@if ($item['parent'] != 0)
+									@break
+								@endif
+								@include('partials.menu-item', ['item' => $item])
+							@endforeach
+						?>
+					</ul>
+				</div>
+			</div>
+		</nav>
+   </header>
+   
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
