@@ -2,12 +2,12 @@
 
 namespace App\Http\Requests;
 
-use app\Http\Requests\Request;
+use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoungeRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
+class EventoRequest extends FormRequest
 {
-
+  
     public function authorize()
     {
         return \Auth::check();
@@ -16,17 +16,15 @@ class LoungeRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
     public function rules()
     {
         return [
-			'name' => 'required|min:5|max:255'
+            'name' => 'required|min:5|max:255'
         ];
     }
 
     public function attributes()
     {
-        return [
-            //
-        ];
+        return [];
     }
-
+	
     public function messages()
     {
         return [

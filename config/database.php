@@ -52,6 +52,9 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
+			'dump_command_path' => '/Applications/MAMP/Library/bin/', 
+            'dump_command_timeout' => 60 * 5, 
+            'dump_using_single_transaction' => true,
         ],
 
         'pgsql' => [

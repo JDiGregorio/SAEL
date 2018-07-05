@@ -14,7 +14,7 @@ return [
     |------------
     */
     // Where do you want to redirect the user by default, after a CRUD entry is saved in the Add or Edit forms?
-    'default_save_action' => 'save_and_back', //options: save_and_back, save_and_edit, save_and_new
+    'default_save_action' => 'save_and_edit', //options: save_and_back, save_and_edit, save_and_new
 
     // When the user chooses "save and back" or "save and new", show a bubble
     // for the fact that the default save action has been changed?
@@ -38,7 +38,7 @@ return [
         // How many items should be shown by default by the Datatable?
         // This value can be overwritten on a specific CRUD by calling
         // $this->crud->setDefaultPageLength(50);
-        'default_page_length' => 25,
+        'default_page_length' => 10,
 
     // A 1D array of options which will be used for both the displayed option and the value, or
     // A 2D array in which the first array is used to define the value options and the second array the displayed options
@@ -191,7 +191,7 @@ return [
         // "en_GB" => "English (United Kingdom)",
         // "en_US" => "English (United States)",
         // "en_ZW" => "English (Zimbabwe)",
-        //'en' => 'English',
+        'en' => 'English',
         // "eo" => "Esperanto",
         // "et_EE" => "Estonian (Estonia)",
         // "et" => "Estonian",

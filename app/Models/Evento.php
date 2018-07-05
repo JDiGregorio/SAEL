@@ -4,28 +4,51 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
+use Illuminate\Support\Facades\Auth;
 
-class Lounge extends Model
+class Evento extends Model
 {
-	
     use CrudTrait;
+	use \Venturecraft\Revisionable\RevisionableTrait;
 
-    /*-------------------------------------------------------------------------
-    | GLOBAL VARIABLES
-    |------------------------------------------------------------------------*/
 
-    protected $table = 'lounges';
-    protected $fillable = ['name','ubication','description'];
-	public $timestamps = false;
+    protected $table = 'eventos';
+    protected $primaryKey = 'id';
+    public $timestamps = true;
+    // protected $guarded = ['id'];
+    protected $fillable = ['name','descripcion'];
+    // protected $hidden = [];
+    // protected $dates = [];
+	
+	protected $revisionCreationsEnabled = true;
+	protected $revisionFormattedFieldNames = array(
+		'name' => 'nombre',
+		'descripcion' => 'descripción',
+	);
 
     /*-------------------------------------------------------------------------
     | FUNCTIONS
     |------------------------------------------------------------------------*/
-		
+	
+	public static function boot()
+    {
+		parent::boot();
+    }
+	
+	public function identifiableName()
+    {
+        return $this->name;
+    }
+	
     /*-------------------------------------------------------------------------
     | RELATIONS
     |------------------------------------------------------------------------*/
-
+		
+	public function reservaciones()
+	{
+		return $this-> hasMany('App\Models\Reservacion');
+	}	
+		
     /*-------------------------------------------------------------------------
     | SCOPES
     |------------------------------------------------------------------------*/
@@ -38,3 +61,4 @@ class Lounge extends Model
     | MUTATORS
     |-------------------------------------------------------------------------*/
 }
+

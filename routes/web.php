@@ -1,7 +1,20 @@
 <?php
 
- // Route::get('/', function () {
-    // return view('welcome');
- // });
+Route::get('/', function () {
+    return redirect('/admin');
+});
 
- Route::get('/', 'Admin\PaginaCrudController@index');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
