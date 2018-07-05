@@ -9,16 +9,18 @@ class CreateLoungeTable extends Migration
 
     public function up()
     {
-        Schema::create('lounges', function (Blueprint $table) {
+        Schema::create('salones', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-			$table->string('ubication');
-			$table->string('description');
+            $table->string('nombre');
+			$table->string('descripcion')->nullable();
+			$table->string('ubicacion')->nullable();
+			$table->integer('Max_personas')->nullable();
+			$table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('lounges');
+        Schema::drop('salones');
     }
 }

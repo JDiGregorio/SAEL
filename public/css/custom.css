@@ -1,3 +1,32 @@
-ul.navbar-nav{
-	    background-color: darkgray;
+body {
+    font-weight: 300!important;
 }
+
+div.back-to-all a{
+	color: #d73925!important;
+}
+
+div.back-to-all a:hover{
+    color: #d8614f!important;
+}
+
+.nav-stacked>li.active>a, .nav-stacked>li.active>a:hover{
+	border-left-color: #e8a919!important;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+	color: unset;
+    background-color: unset;
+}
+
+.crf-login-logo-container{
+	text-align:center;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-bottom: 30px;
+}
+
+.crf-login-logo{
+	width:250px;
+}
+

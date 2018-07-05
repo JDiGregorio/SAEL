@@ -8,34 +8,37 @@ class CreateReservationTable extends Migration
 {
     public function up()
     {
-        Schema::create('reservations', function (Blueprint $table) {
+        Schema::create('reservaciones', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('date_scheduled');
-			$table->time('entry_time');
-			$table->time('departure_time');
-			$table->decimal('initial_balance', 10, 2);
-			$table->string('status');
-			$table->integer('clients_id')->unsigned();
-			$table->integer('employees_id')->unsigned();
+            $table->date('fecha');
+			$table->time('hora_inicio')->nullable();
+			$table->time('hola_final')->nullable();
+			$table->decimal('monto_adelanto',10,2)->nullable();
+			$table->boolean('estado')->nullable();
+			$table->integer('cliente_id')->unsigned()->nullable();
+			$table->integer('usuario_id')->unsigned()->nullable();
+			$table->integer('tipo')->nullable();
+			$table->integer('tipo_evento')->nullable();
+			$table->timestamps();
 			
-			$table->foreign('clients_id')->references('id')->on('clients');
-			$table->foreign('employees_id')->references('id')->on('employees');
+			$table->foreign('cliente_id')->references('id')->on('clientes');
+			$table->foreign('usuario_id')->references('id')->on('users');
         });
 		
-		// Relación M:M tabla lounges con reservations
-		Schema::create('lounge_reservation', function (Blueprint $table) {
+		//Relación M:M tabla lounges con reservations
+		Schema::create('reservacion_salon', function (Blueprint $table) {
 			$table->increments('id');
-			$table->integer('lounges_id')->unsigned();
-			$table->integer('reservations_id')->unsigned();
+			$table->integer('salon_id')->unsigned()->nullable();
+			$table->integer('reservacion_id')->unsigned()->nullable();
 			
-			$table->foreign('lounges_id')->references('id')->on('lounges');
-			$table->foreign('reservations_id')->references('id')->on('reservations');
+			$table->foreign('salon_id')->references('id')->on('salones');
+			$table->foreign('reservacion_id')->references('id')->on('reservaciones');
 		});
     }
 
     public function down()
     {	
-		Schema::dropIfExists('lounge_reservation');
-        Schema::dropIfExists('reservations');
+		Schema::drop('salon_reservacion');
+        Schema::drop('reservaciones');
     }
 }
