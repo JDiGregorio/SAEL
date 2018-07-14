@@ -17,7 +17,7 @@ class SalonRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
     {
         return [
 			'nombre' => 'required',
-			'Max_personas' => 'digits_between:0,10000'
+			'fotografia' => 'nullable|image|max:250'
         ];
     }
 
@@ -30,7 +30,8 @@ class SalonRequest extends \Backpack\CRUD\app\Http\Requests\CrudRequest
     {
         return [
             'nombre.required' => 'Necesita agregar el nombre de registro de salón.',
-            'Max_personas.digits_between' => 'Necesita agregar el valor de cantidad de personas en enteros positivos.'
+			'fotografia.image' => 'El archivo seleccionado debe ser una imagen.',
+			'foto.max' => 'El tamaño de la fotografía no es valido. Máximo 250Kb.'
         ];
     }
 }

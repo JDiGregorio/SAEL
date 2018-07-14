@@ -17,7 +17,8 @@ class ReservacionRequest extends FormRequest
     public function rules()
     {
         return [
-            'fecha' => 'required'
+            'fecha_inicio' => 'required',
+            'fecha_final' => 'required|date|after_or_equal:fecha_inicio',
         ];
     }
 
@@ -29,7 +30,9 @@ class ReservacionRequest extends FormRequest
     public function messages()
     {
         return [
-            'fecha.required' => 'Necesita seleccionar la fecha de reservación.'
+            'fecha_inicio.required' => 'Necesita seleccionar la fecha de inicio de evento.',
+            'fecha_inicio.required' => 'Necesita seleccionar la fecha de finalización de evento.',
+            'fecha_final.after_or_equal' => 'Necesita seleccionar una fecha de finalización igual o posterior a la fecha de inicio de evento.',
         ];
     }
 }

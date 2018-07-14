@@ -34,6 +34,11 @@
     <link rel="stylesheet" href="{{ asset('vendor/backpack/backpack.base.css') }}?v=2">
     <link rel="stylesheet" href="{{ asset('vendor/backpack/overlays/backpack.bold.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('/plugins/fullcalendar/fullcalendar.min.css') }}">
+	
+	<script type="text/javascript" src="{{ asset('/plugins/fullcalendar/lib/momment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/plugins/fullcalendar/fullcalendar.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/plugins/fullcalendar/locale/es.js') }}"></script>
 
     @yield('after_styles')
     @stack('after_styles')
@@ -95,7 +100,7 @@
         <section class="content">
 
           @yield('content')
-
+		  @yield('hola')
         </section>
         <!-- /.content -->
       </div>
@@ -119,7 +124,8 @@
     <!-- Bootstrap 3.3.7 -->
     <script src="{{ asset('vendor/adminlte') }}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="{{ asset('vendor/adminlte') }}/plugins/pace/pace.min.js"></script>
-    <script src="{{ asset('vendor/adminlte') }}/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    
+	<script src="{{ asset('vendor/adminlte') }}/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     {{-- <script src="{{ asset('vendor/adminlte') }}/bower_components/fastclick/lib/fastclick.js"></script> --}}
     <script src="{{ asset('vendor/adminlte') }}/dist/js/adminlte.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js" type="text/javascript"></script>
@@ -173,5 +179,6 @@
 
     <!-- JavaScripts -->
     {{-- <script src="{{ mix('js/app.js') }}"></script> --}}
+
 </body>
 </html>

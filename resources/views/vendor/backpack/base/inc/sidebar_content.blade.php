@@ -2,13 +2,13 @@
 <li><a href="{{ backpack_url('dashboard') }}"><i class="fa fa-home" aria-hidden="true"></i> <span>inicio</span></a></li>
 
 <li class="treeview">
-    <a href="#"><i class="fa fa-group"></i> <span>Usuarios</span> <i class="fa fa-angle-left pull-right"></i></a>
+    <a href="#"><i class="fa fa-group"></i> <span>Users, Roles, Permissions</span> <i class="fa fa-angle-left pull-right"></i></a>
     <ul class="treeview-menu">
-      <li><a href="{{ backpack_url('user') }}"><i class="fa fa-user"></i> <span>Usuarios</span></a></li>
+      <li><a href="{{ backpack_url('user') }}"><i class="fa fa-user"></i> <span>Users</span></a></li>
       <li><a href="{{ backpack_url('role') }}"><i class="fa fa-group"></i> <span>Roles</span></a></li>
-      <li><a href="{{ backpack_url('permission') }}"><i class="fa fa-key"></i> <span>Permisos</span></a></li>
+      <li><a href="{{ backpack_url('permission') }}"><i class="fa fa-key"></i> <span>Permissions</span></a></li>
     </ul>
-</li>
+  </li>
 
 <li><a href="{{ backpack_url('cliente') }}"><i class="fa fa-male" aria-hidden="true"></i> <span>Clientes</span></a></li>
 
@@ -39,7 +39,7 @@
         </ul>
 </li>
 
-<!--<li class="header">CONFIGURACIÓN</li>
+<li class="header">CONFIGURACIÓN</li>
 <li class="treeview">
     <a href="#"><i class="fa fa-cog" aria-hidden="true"></i> <span>Configuración Página</span> <i class="fa fa-angle-left pull-right"></i></a>
 		<ul class="treeview-menu">
@@ -49,7 +49,7 @@
 </li>
 
 <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/backup') }}"><i class="fa fa-hdd-o"></i> <span>Backups</span></a></li>
--->
+
 
 <li class="header">{{ trans('backpack::base.user') }}</li>
 <li><a href="{{ url(config('backpack.base.route_prefix', 'admin').'/logout') }}"><i class="fa fa-sign-out"></i> <span>{{ trans('backpack::base.logout') }}</span></a></li>

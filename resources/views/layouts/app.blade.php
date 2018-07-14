@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="{{ asset('/plugins/fullcalendar/fullcalendar.min.css') }}">
 </head>
 <body>
     <div id="app">
@@ -76,5 +77,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/plugins/fullcalendar/lib/momment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/plugins/fullcalendar/fullcalendar.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/plugins/fullcalendar/locale/es.js') }}"></script>
 </body>
 </html>

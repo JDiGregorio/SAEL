@@ -50,8 +50,8 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'root' => storage_path('uploads'),
+            'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
 
@@ -63,7 +63,6 @@ return [
             'bucket' => env('AWS_BUCKET'),
         ],
 		
-		// used for Backpack/BackupManager
         'backups' => [
             'driver' => 'local',
             'root'   => storage_path('backups'), 

@@ -15,18 +15,18 @@ class Equipo extends Model
     protected $primaryKey = 'id';
      public $timestamps = true;
     // protected $guarded = ['id'];
-    protected $fillable = ['description','precio','max_personas','max_mesas','max_sillas','salon_id'];
+    protected $fillable = ['description','max_personas','max_mesas','max_sillas','salon_id','audiovisual'];
     // protected $hidden = [];
     // protected $dates = [];
 
 	protected $revisionCreationsEnabled = true;
 	protected $revisionFormattedFieldNames = array(
 		'description' => 'descripción',
-		'precio' => 'precio estimado',
 		'max_personas'  => 'máximo de personas',
 		'max_mesas'  => 'máximo de mesas',
 		'max_sillas'  => 'máximo de sillas',
 		'salon_id' => 'salón',
+		'audiovisual' => 'audiovisual',
 	);
 	
     /*-------------------------------------------------------------------------
@@ -46,6 +46,11 @@ class Equipo extends Model
 	public function salon()
 	{
 		return $this->belongsTo('App\Models\Salon');
+	}
+	
+	public function reservaciones()
+	{
+		return $this->hasMany('App\Models\Reservacion');
 	}
 	
     /*-------------------------------------------------------------------------

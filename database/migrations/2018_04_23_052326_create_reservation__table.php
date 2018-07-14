@@ -31,14 +31,14 @@ class CreateReservationTable extends Migration
 			$table->integer('salon_id')->unsigned()->nullable();
 			$table->integer('reservacion_id')->unsigned()->nullable();
 			
-			$table->foreign('salon_id')->references('id')->on('salones');
-			$table->foreign('reservacion_id')->references('id')->on('reservaciones');
+			$table->foreign('salon_id')->references('id')->on('salones')->onDelete('cascade');
+			$table->foreign('reservacion_id')->references('id')->on('reservaciones')->onDelete('cascade');
 		});
     }
 
     public function down()
     {	
-		Schema::drop('salon_reservacion');
+		Schema::drop('reservacion_salon');
         Schema::drop('reservaciones');
     }
 }

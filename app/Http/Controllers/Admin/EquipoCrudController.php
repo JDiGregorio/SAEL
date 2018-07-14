@@ -15,6 +15,10 @@ class EquipoCrudController extends CrudController
         $this->crud->setRoute('admin/equipo-de-salon');
         $this->crud->setEntityNameStrings('equipo', 'equipos');
 		
+		$this->crud->allowAccess('revisions');
+		$this->crud->with('revisionHistory');
+		$this->crud->genero = "este";
+		
 		$this->crud->addColumn([
 			'label' =>"Salón",
 			'type' => 'select',
@@ -25,11 +29,6 @@ class EquipoCrudController extends CrudController
 		]);
 		
 		$this->crud->addColumn([
-			'name' => 'precio',
-			'label' => "Precio estimado", 
-		]);
-		
-		$this->crud->addColumn([
 			'name' => 'max_personas',
 			'label' => "Cantidad máxima de personas",
 		]);
@@ -42,6 +41,8 @@ class EquipoCrudController extends CrudController
 			'name' => 'max_sillas',
 			'label' => "Cantidad máxima de sillas",
 		]);
+		
+		//------------------------------------------------------------------------------------------------------------------------------//
 		
 		$this->crud->addField([
 			'label' => "Salón",
@@ -50,19 +51,35 @@ class EquipoCrudController extends CrudController
 			'entity' => 'salon', 
 			'attribute' => 'nombre', 
 			'model' => "App\Models\Salon",
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-12'
+			],
 		]);
 		
         $this->crud->addField([
 			'name' => 'description',
 			'label' => "Descripción",
 			'type' => 'textarea',
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-12'
+			],
 		]);
 		
 		$this->crud->addField([
-			'name' => 'precio',
-			'label' => "Precio estimado",
-			'type' => 'number',
-			'step' => 'any',
+			'name' => 'separator',
+			'type' => 'custom_html',
+			'value' => '<hr>',
+		]);
+		
+		$this->crud->addField([
+			'name' => 'audiovisual', 
+			'label' => 'Audiovisual', 
+			'type' => 'radio',
+			'options' => [ 
+					0 => "No",
+					1 => "Si"
+			],
+			'inline'      => true,
 		]);
 		
 		$this->crud->addField([
@@ -70,6 +87,10 @@ class EquipoCrudController extends CrudController
 			'label' => "Cantidad máxima de personas",
 			'type' => 'number',
 			'step' => 'any',
+			'default' => '0',
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-6',
+			],
 		]);
 		
 		$this->crud->addField([
@@ -77,6 +98,10 @@ class EquipoCrudController extends CrudController
 			'label' => "Cantidad máxima de mesas",
 			'type' => 'number',
 			'step' => 'any',
+			'default' => '0',
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-6',
+			],
 		]);
 		
 		$this->crud->addField([
@@ -84,7 +109,12 @@ class EquipoCrudController extends CrudController
 			'label' => "Cantidad máxima de sillas",
 			'type' => 'number',
 			'step' => 'any',
+			'default' => '0',
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-6',
+			],
 		]);
+		
     }
 
     public function store(StoreRequest $request)

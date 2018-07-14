@@ -6,8 +6,12 @@
 	CRUD::resource('evento', 'EventoCrudController');
 	CRUD::resource('equipo-de-salon', 'EquipoCrudController');
 	
-	// Route::get('{page}/{subs?}', ['uses' => 'PageCrudController@index'])
-    // ->where(['page' => '^((?!admin).)*$', 'subs' => '.*']);
+	// CRUD::resource('user', 'UserCrudController');
+	// CRUD::resource('role', 'RoleCrudController');
+	
+	
+	
+	//Route::get('{page}/{subs?}', ['uses' => 'PageCrudController@index'])->where(['page' => '^((?!admin).)*$', 'subs' => '.*']);
 	
 	Route::get('pdf_usuario', function(){
 		$users = App\User::all();

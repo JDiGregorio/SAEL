@@ -30,33 +30,35 @@ class SalonCrudController extends CrudController
 		'label' => 'Ubicación',
 		]);
 		
-		$this->crud->addColumn([
-		'name' => 'Max_personas',
-		'label' => 'Cantidad máxima de personas',
-		]);
+		//---------------------------------------------------------------------------------------------------------------------------------------------------------//
 		
         $this->crud->addField([
 		'name' => 'nombre',
 		'label' => 'Registro de salón',
-		'type' => 'text'
+		'type' => 'text',
+		'tab' => 'Datos generales',
 		]);
 		
 		$this->crud->addField([
 		'name' => 'descripcion',
 		'label' => 'Descripción de salón',
-		'type' => 'textarea'
+		'type' => 'textarea',
+		'tab' => 'Datos generales',
 		]);
 		
         $this->crud->addField([
 		'name' => 'ubicacion',
 		'label' => 'Ubicación de salón',
-		'type' => 'text'
+		'type' => 'address',
+		'tab' => 'Datos generales',
 		]);
 		
 		$this->crud->addField([
-		'name' => 'Max_personas',
-		'label' => 'Cantidad máxima de personas',
-		'type' => 'number'
+			'name' => 'fotografia',
+			'label' => "Fotografía",
+			'type' => 'upload',
+			'upload' => true,
+			'tab' => 'Fotografía',
 		]);
     }
 	

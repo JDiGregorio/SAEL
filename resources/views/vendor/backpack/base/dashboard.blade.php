@@ -12,17 +12,16 @@
     </section>
 @endsection
 
-
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <div class="box-title">{{ trans('backpack::base.login_status') }}</div>
-                </div>
+<div class="container">
+   <div id="calendar"> </div>
+</div>
+@endsection
 
-                <div class="box-body">{{ trans('backpack::base.logged_in') }}</div>
-            </div>
-        </div>
-    </div>
+@section('hola')
+<script type="text/javascript">
+	$(function() {
+		$("#calendar").fullCalendar();
+	})
+</script>
 @endsection
