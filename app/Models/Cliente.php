@@ -24,6 +24,7 @@ class Cliente extends Model
     protected $fillable = ['identidad','nombre','descripcion','direccion','telefono','correo'];
     // protected $hidden = [];
     // protected $dates = [];
+	protected $guard_name = 'web';
 	
 	protected $revisionCreationsEnabled = true;
 	protected $revisionFormattedFieldNames = array(

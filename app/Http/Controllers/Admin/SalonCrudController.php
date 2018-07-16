@@ -7,8 +7,11 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\SalonRequest as StoreRequest;
 use App\Http\Requests\SalonRequest as UpdateRequest;
 
+use App\Authorizable;
+
 class SalonCrudController extends CrudController
 {
+	use Authorizable;
     public function setup()
     {
 		

@@ -19,7 +19,8 @@ class Salon extends Model
     protected $table = 'salones';
 	protected $casts = ['fotos' => 'array'];
     protected $fillable = ['nombre','descripcion','ubicacion','fotografia'];
-	public $timestamps = false;
+	public $timestamps = true;
+	protected $guard_name = 'web';
 	
 	protected $revisionCreationsEnabled = true;
 	protected $revisionFormattedFieldNames = array(

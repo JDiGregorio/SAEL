@@ -70,16 +70,16 @@ return [
             /*
              * The filename prefix used for the backup zip file.
              */
-            'filename_prefix' => 'credia_db',
+            'filename_prefix' => '',
 
             /*
              * The disk names on which the backups will be stored.
              */
             'disks' => [
-                'backups',
+                'local',
             ],
         ],
-		'temporary_directory' => storage_path('app/backup/'),
+		'temporary_directory' => storage_path('app/backup'),
     ],
 
     /*
@@ -134,7 +134,7 @@ return [
     'monitorBackups' => [
         [
             'name'                                   => config('laravel'),
-            'disks'                                  => ['backup'],
+            'disks'                                  => ['local'],
             'newestBackupsShouldNotBeOlderThanDays'  => 1,
             'storageUsedMayNotBeHigherThanMegabytes' => 5000,
         ],

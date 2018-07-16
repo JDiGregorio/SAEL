@@ -18,6 +18,7 @@ class Equipo extends Model
     protected $fillable = ['description','max_personas','max_mesas','max_sillas','salon_id','audiovisual'];
     // protected $hidden = [];
     // protected $dates = [];
+	protected $guard_name = 'web';
 
 	protected $revisionCreationsEnabled = true;
 	protected $revisionFormattedFieldNames = array(

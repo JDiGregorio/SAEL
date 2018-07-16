@@ -7,8 +7,11 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\EquipoRequest as StoreRequest;
 use App\Http\Requests\EquipoRequest as UpdateRequest;
 
+use App\Authorizable;
+
 class EquipoCrudController extends CrudController
 {
+	use Authorizable;
     public function setup()
     {
         $this->crud->setModel('App\Models\Equipo');

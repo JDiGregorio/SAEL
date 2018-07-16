@@ -11,17 +11,3 @@
       </ol>
     </section>
 @endsection
-
-@section('content')
-<div class="container">
-   <div id="calendar"> </div>
-</div>
-@endsection
-
-@section('hola')
-<script type="text/javascript">
-	$(function() {
-		$("#calendar").fullCalendar();
-	})
-</script>
-@endsection

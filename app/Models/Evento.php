@@ -19,6 +19,7 @@ class Evento extends Model
     protected $fillable = ['name','descripcion'];
     // protected $hidden = [];
     // protected $dates = [];
+	protected $guard_name = 'web';
 	
 	protected $revisionCreationsEnabled = true;
 	protected $revisionFormattedFieldNames = array(

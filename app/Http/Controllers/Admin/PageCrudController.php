@@ -8,8 +8,11 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\PageRequest as StoreRequest;
 use App\Http\Requests\PageRequest as UpdateRequest;
 
+use App\Authorizable;
+
 class PageCrudController extends CrudController
 {
+	use Authorizable;
     public function setup()
     {
 

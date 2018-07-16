@@ -7,8 +7,12 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\ClienteRequest as StoreRequest;
 use App\Http\Requests\ClienteRequest as UpdateRequest;
 
+use App\Authorizable;
+
 class ClienteCrudController extends CrudController
 {
+	
+	use Authorizable;
     public function setup()
     {
         $this->crud->setModel('App\Models\Cliente');

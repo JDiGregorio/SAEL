@@ -34,11 +34,6 @@
     <link rel="stylesheet" href="{{ asset('vendor/backpack/backpack.base.css') }}?v=2">
     <link rel="stylesheet" href="{{ asset('vendor/backpack/overlays/backpack.bold.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-    <link rel="stylesheet" href="{{ asset('/plugins/fullcalendar/fullcalendar.min.css') }}">
-	
-	<script type="text/javascript" src="{{ asset('/plugins/fullcalendar/lib/momment.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/plugins/fullcalendar/fullcalendar.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/plugins/fullcalendar/locale/es.js') }}"></script>
 
     @yield('after_styles')
     @stack('after_styles')
@@ -100,7 +95,6 @@
         <section class="content">
 
           @yield('content')
-		  @yield('hola')
         </section>
         <!-- /.content -->
       </div>

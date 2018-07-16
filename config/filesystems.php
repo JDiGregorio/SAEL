@@ -65,7 +65,7 @@ return [
 		
         'backups' => [
             'driver' => 'local',
-            'root'   => storage_path('backups'), 
+            'root'   => storage_path('backups'),
         ],
     ],
 
