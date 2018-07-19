@@ -8,6 +8,7 @@ use App\Http\Requests\ClienteRequest as StoreRequest;
 use App\Http\Requests\ClienteRequest as UpdateRequest;
 
 use App\Authorizable;
+use App\Models\Cliente as Cliente;
 
 class ClienteCrudController extends CrudController
 {
@@ -24,55 +25,131 @@ class ClienteCrudController extends CrudController
 		$this->crud->genero = "este";
 		
 		$this->crud->addColumn([
-		'name' => 'identidad',
-		'label' => 'Número de identidad' 
+			'name' => 'identidad',
+			'label' => 'Número de identidad',
 		]);
 		
 		$this->crud->addColumn([
-		'name' => 'nombre',
-		'label' => 'Nombre' 
+			'name' => 'nombre',
+			'label' => 'Nombre' 
 		]);
 		
 		$this->crud->addColumn([
-		'name' => 'telefono',
-		'label' => 'Número de teléfono',
+			'name' => 'telefono',
+			'label' => 'Número de teléfono',
 		]);
+		
+		//-------------------------------------------------------------------------------//
 		
 		$this->crud->addField([
-		'name' => 'identidad',
-		'label' => 'Número de identidad',
-		'type' => 'text'
+			'name' => 'identidad',
+			'label' => 'Número de identidad',
+			'type' => 'text',
+			'tab'=> 'Datos generales',
 		]);
 		
         $this->crud->addField([
-		'name' => 'nombre',
-		'label' => 'Nombre',
-		'type' => 'text'
+			'name' => 'nombre',
+			'label' => 'Nombre de cliente',
+			'type' => 'text',
+			'tab'=> 'Datos generales',
 		]);
 		
 		$this->crud->addField([
-		'name' => 'direccion',
-		'label' => 'Dirección',
-		'type' => 'address'
+			'name' => 'telefono',
+			'label' => 'Número de teléfono/celular',
+			'type' => 'text',
+			'tab'=> 'Datos generales',
 		]);
 		
 		$this->crud->addField([
-		'name' => 'telefono',
-		'label' => 'Número de teléfono',
-		'type' => 'text'
+			'name' => 'correo',
+			'label' => 'Correo',
+			'type' => 'email',
+			'tab'=> 'Datos generales',
 		]);
 		
 		$this->crud->addField([
-		'name' => 'correo',
-		'label' => 'Dirección de correo',
-		'type' => 'email'
+			'name' => 'separator',
+			'type' => 'custom_html',
+			'value' => '<hr>',
+			'tab' => 'Datos generales'
 		]);
 		
 		$this->crud->addField([
-		'name' => 'descripcion',
-		'label' => 'Comentario',
-		'type' => 'textarea'
+			'name' => 'empresa',
+			'label' => 'Nombre de empresa',
+			'type' => 'text',
+			'tab'=> 'Datos generales',
 		]);
+		
+		$this->crud->addField([
+			'name' => 'separator1',
+			'type' => 'custom_html',
+			'value' => '<hr>',
+			'tab' => 'Datos generales'
+		]);
+		
+		$this->crud->addField([
+			'name' => 'descripcion',
+			'label' => 'Observación',
+			'type' => 'textarea',
+			'tab'=> 'Datos generales',
+		]);
+		
+		///------------------------------------------------------------------------------------------------------------------------///
+		
+		$this->crud->addField([
+			'label' => "Departamento",
+			'type' => 'select2',
+			'name' => 'departamento_id',
+			'entity' => 'departamento', 
+			'attribute' => 'nombre', 
+			'model' => "App\Models\Departamento",
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-6',
+			],
+			'tab'=> 'Dirección',
+		]);
+		
+		$this->crud->addField([
+			'label' => "Ciudad",
+			'type' => 'select2',
+			'name' => 'ciudad_id',
+			'entity' => 'ciudad', 
+			'attribute' => 'nombre', 
+			'model' => "App\Models\Ciudad",
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-6',
+			],
+			'tab'=> 'Dirección',
+		]);
+		
+		$this->crud->addField([
+			'name' => 'direccion',
+			'label' => 'Dirección',
+			'type' => 'address',
+			'tab'=> 'Dirección',
+		]);
+		
+		$this->crud->addField([
+			'name' => 'separator2',
+			'type' => 'custom_html',
+			'value' => '<hr>',
+			'tab'=> 'Dirección',
+		]);
+		
+		$this->crud->addField([
+			'name' => 'detalles',
+			'label' => 'Más detalles',
+			'type' => 'textarea',
+			'tab'=> 'Dirección',
+		]);
+    }
+	
+	public function ver($id)
+    {
+        return Cliente::find($id);
     }
 
     public function store(StoreRequest $request)

@@ -6,39 +6,33 @@ use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
 use Illuminate\Support\Facades\Auth;
 
-class Cliente extends Model
+
+class Departamento extends Model
 {
     use CrudTrait;
 	use \Venturecraft\Revisionable\RevisionableTrait;
-
+	
     /*
     |--------------------------------------------------------------------------
     | GLOBAL VARIABLES
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'clientes';
-    // protected $primaryKey = 'id';
+    protected $table = 'departamentos';
+    protected $primaryKey = 'id';
     public $timestamps = true;
     // protected $guarded = ['id'];
-    protected $fillable = ['identidad','nombre','descripcion','direccion','telefono','correo','empresa','departamento_id','ciudad_id','detalles'];
+    protected $fillable = ['nombre','codigo'];
     // protected $hidden = [];
     // protected $dates = [];
 	protected $guard_name = 'web';
 	
 	protected $revisionCreationsEnabled = true;
 	protected $revisionFormattedFieldNames = array(
-		'identidad' => 'identidad',
-		'nombre' => 'nombre de cliente',
-		'descripcion' => 'observación',
-		'direccion'  => 'dirección',
-		'telefono'  => 'teléfono',
-		'empresa'  => 'nombre de empresa',
-		'departamento_id'  => 'departamento',
-		'ciudad_id'  => 'ciudad',
-		'detalles'  => 'más detalles',
+		'nombre' => 'nombre de departamento',
+		'codigo' => 'código',
 	);
-
+	
     /*------------------------------------------------------------------------
     | FUNCTIONS
     |------------------------------------------------------------------------*/
@@ -47,29 +41,19 @@ class Cliente extends Model
     {
 		parent::boot();
     }
-	
-	public function identifiableName()
-    {
-        return $this->nombre;
-    }
-	
-    /*------------------------------------------------------------------------
+
+    /*-------------------------------------------------------------------------
     | RELATIONS
-    |--------------------------------------------------------------------------*/
+    |------------------------------------------------------------------------*/
 	
-	public function reservaciones()
+	public function clientes()
 	{
-		return $this-> hasMany('App\Models\Reservacion');
+		return $this-> hasMany('App\Models\Cliente');
 	}
 	
-	public function departamento()
+	public function ciudades()
 	{
-		return $this->belongsTo('App\Models\Departamento');
-	}
-	
-	public function ciudad()
-	{
-		return $this->belongsTo('App\Models\Ciudad');
+		return $this-> hasMany('App\Models\Ciudad');
 	}
 	
     /*-------------------------------------------------------------------------

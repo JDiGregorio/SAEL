@@ -50,8 +50,10 @@
 		@role('Administrador')
 			<li class="header">CONFIGURACIÓN</li>
 			<li class="treeview">
-				<a href="#"><i class="fa fa-cog" aria-hidden="true"></i> <span>Configuración Página</span> <i class="fa fa-angle-left pull-right"></i></a>
+				<a href="#"><i class="fa fa-cog" aria-hidden="true"></i> <span>Configuración</span> <i class="fa fa-angle-left pull-right"></i></a>
 					<ul class="treeview-menu">
+						<li><a href="{{ backpack_url('departamento') }}"><i class="fa fa-globe" aria-hidden="true"></i> <span>Departamentos</span></a></li>
+						<li><a href="{{ backpack_url('ciudad') }}"><i class="fa fa-globe" aria-hidden="true"></i> <span>Ciudades</span></a></li>
 						<li><a href="{{backpack_url('page') }}"><i class="fa fa-file-o"></i> <span>Páginas</span></a></li>
 						<li><a href="{{ url(config('backpack.base.route_prefix', 'admin') . '/menu-item') }}"><i class="fa fa-list"></i> <span>Menú</span></a></li>
 					</ul>

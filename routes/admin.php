@@ -5,10 +5,10 @@
 	CRUD::resource('reservacion', 'ReservacionCrudController');
 	CRUD::resource('evento', 'EventoCrudController');
 	CRUD::resource('equipo-de-salon', 'EquipoCrudController');
+	CRUD::resource('departamento', 'DepartamentoCrudController');
+	CRUD::resource('ciudad', 'CiudadCrudController');
 	
-	Route::get('/reserva/get','ReservacionCrudController@get_events', function(){
-		header('Access-Control-Allow-Origin: *');
-	});
+	//Route::get('/reserva/get','ReservacionCrudController@get_events'});
 	
 	//Route::get('{page}/{subs?}', ['uses' => 'PageCrudController@index'])->where(['page' => '^((?!admin).)*$', 'subs' => '.*']);
 	
