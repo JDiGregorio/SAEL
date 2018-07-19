@@ -11,7 +11,7 @@ class Reservacion extends Model
     use CrudTrait;
 	use \Venturecraft\Revisionable\RevisionableTrait;
 
-    /*-------------------------------------------------------------------------
+    /*------------------------------------------------------------------------
     | GLOBAL VARIABLES
     |------------------------------------------------------------------------*/
 
@@ -20,7 +20,7 @@ class Reservacion extends Model
     public $timestamps = true;
     // protected $guarded = ['id'];
     protected $fillable = ['fecha_inicio','hora_inicio','hola_final','monto_adelanto','estado','cliente_id','usuario_id','tipo',
-						   'evento_id','fecha_final','observacion_1','observacion_2','secuencia','nombre'];
+						   'evento_id','fecha_final','observacion_1','observacion_2','secuencia','nombre','titulo','color'];
     // protected $hidden = [];
     // protected $dates = [];
 	protected $guard_name = 'web';

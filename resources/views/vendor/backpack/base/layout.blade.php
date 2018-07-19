@@ -34,7 +34,11 @@
     <link rel="stylesheet" href="{{ asset('vendor/backpack/backpack.base.css') }}?v=2">
     <link rel="stylesheet" href="{{ asset('vendor/backpack/overlays/backpack.bold.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-
+	
+	<link rel="stylesheet" href="{{ asset('/plugins/fullcalendar/fullcalendar.css') }}">
+	
+	
+	
     @yield('after_styles')
     @stack('after_styles')
 
@@ -89,12 +93,12 @@
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-         @yield('header')
-
+        @yield('header')
+		
         <!-- Main content -->
         <section class="content">
-
-          @yield('content')
+			@yield('cal')
+			@yield('content')
         </section>
         <!-- /.content -->
       </div>
@@ -167,12 +171,16 @@
     </script>
 
     @include('backpack::inc.alerts')
+	
 
+    @yield('scripts')
     @yield('after_scripts')
     @stack('after_scripts')
 
     <!-- JavaScripts -->
     {{-- <script src="{{ mix('js/app.js') }}"></script> --}}
+	<script type='text/javascript' src="{{ asset('plugins/fullcalendar/lib/moment.min.js') }}"></script>
+	<script type='text/javascript' src="{{ asset('plugins/fullcalendar/fullcalendar.js') }}"></script>
 
 </body>
 </html>

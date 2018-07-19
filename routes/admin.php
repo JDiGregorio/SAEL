@@ -6,6 +6,10 @@
 	CRUD::resource('evento', 'EventoCrudController');
 	CRUD::resource('equipo-de-salon', 'EquipoCrudController');
 	
+	Route::get('/reserva/get','ReservacionCrudController@get_events', function(){
+		header('Access-Control-Allow-Origin: *');
+	});
+	
 	//Route::get('{page}/{subs?}', ['uses' => 'PageCrudController@index'])->where(['page' => '^((?!admin).)*$', 'subs' => '.*']);
 	
 	Route::get('pdf_usuario', function(){

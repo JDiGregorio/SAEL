@@ -73,6 +73,16 @@ class ReservacionCrudController extends CrudController
 		], 'update');
 		
 		$this->crud->addField([
+			'name' => 'titulo',
+			'label' => 'Título de evento',
+			'type' => 'text',
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-12',
+			],
+			'tab' => 'Datos generales',
+		]);
+		
+		$this->crud->addField([
 			'name' => 'estado',
 			'label' => '',
 			'type' => 'toogle',
@@ -221,6 +231,12 @@ class ReservacionCrudController extends CrudController
 		]);
 		
     }
+	
+	public function get_events()
+	{
+		$events = Reservacion::select("id","titulo as title","fecha_inicio as start","fecha_final as end","color")->get()->toArray();
+		return Response()->json($events);
+	}
 
     public function store(StoreRequest $request)
     {
