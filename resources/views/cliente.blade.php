@@ -1,64 +1,38 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+
+	<div style="margin:1px; width:700px;">
+		<hr>
+			<div id="left">
+				<img src="img/clientemini.png" class="img-fluid" alt="Responsive image">
+			</div>
+			<div id="right" >
+				<img src="img/logomini.png" class="img-fluid" alt="Responsive image">
+			</div>
+			<h1 align="center">Reporte de clientes</h1>
+			<h5 align="center">Sistemas Administrativo de Control de Eventos</h5>
+	</div>
 <hr>
-<div>
-<span>Sistemas Administrativo de Control de Eventos</span>
-<h1>Reporte de clientes</h1>
-</div>
-<hr>
-<table id="customers">
-	<thead>
-	<tr>
-		<th>Identidad</th>
-		<th>Nombre</th>
-		<th>Dirección</th>
-		<th>Teléfono</th>
-		<th>Correo</th>
-	</tr>
-	</thead>
-	<tbody>
-		@foreach($clientes as $cliente)
+	<table class="table table-bordered">
+		<thead class="thead-light">
 			<tr>
-				<td>{{ $cliente->identidad }}</td>
-				<td>{{ $cliente->nombre }}</td>
-				<td>{{ $cliente->direccion }}</td>
-				<td>{{ $cliente->telefono }}</td>
-				<td>{{ $cliente->correo }}</td>
+				<th class="col-xs-2">Identidad</th>
+				<th class="col-xs-3">Nombre</th>
+				<th class="col-xs-3">Dirección</th>
+				<th class="col-xs-1">Teléfono</th>
+				<th class="col-xs-3">Correo</th>
 			</tr>
-		@endforeach
-	</tbody>
-</table>
-
-<style>
-
-#customers {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-#customers th {
-    border: 1px solid #ddd;
-    padding: 8px;
-	align: center;
-}
-
-#customers td {
-    border: 1px solid #ddd;
-    padding-left: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-	font-size: 12px;
-}
-
-#customers tr:nth-child(even){background-color: #f2f2f2;}
-
-#customers tr:hover {background-color: #ddd;}
-
-#customers th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: gray;
-    color: white;
-}
-</style>
+		</thead>
+		<tbody>
+			@foreach($clientes as $cliente)
+				<tr>
+					<td>{{ $cliente->identidad }}</td>
+					<td>{{ $cliente->nombre }}</td>
+					<td>{{ $cliente->direccion }}</td>
+					<td>{{ $cliente->telefono }}</td>
+					<td>{{ $cliente->correo }}</td>
+				</tr>
+			@endforeach
+		</tbody>
+	</table>
 

@@ -37,8 +37,6 @@
 	
 	<link rel="stylesheet" href="{{ asset('/plugins/fullcalendar/fullcalendar.css') }}">
 	
-	
-	
     @yield('after_styles')
     @stack('after_styles')
 
@@ -92,13 +90,26 @@
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
+        <!-- Dashboard -->
         @yield('header')
+		
+		<!-- Calendario -->
+		@yield('head')
+		
+		<!-- Tabla estados -->
+		@yield('head_estado')
 		
         <!-- Main content -->
         <section class="content">
-			@yield('cal')
+			<!-- Dashboard -->
 			@yield('content')
+			
+			<!-- Calendario -->
+			@yield('calendario')
+			
+			<!-- Tabla estados -->
+			@yield('tabla_estado')
+			
         </section>
         <!-- /.content -->
       </div>
@@ -127,6 +138,8 @@
     {{-- <script src="{{ asset('vendor/adminlte') }}/bower_components/fastclick/lib/fastclick.js"></script> --}}
     <script src="{{ asset('vendor/adminlte') }}/dist/js/adminlte.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js" type="text/javascript"></script>
+	
+	<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 
     <!-- page script -->
     <script type="text/javascript">
@@ -174,6 +187,7 @@
 	
 
     @yield('scripts')
+    @yield('scripts_estado')
     @yield('after_scripts')
     @stack('after_scripts')
 
@@ -181,6 +195,7 @@
     {{-- <script src="{{ mix('js/app.js') }}"></script> --}}
 	<script type='text/javascript' src="{{ asset('plugins/fullcalendar/lib/moment.min.js') }}"></script>
 	<script type='text/javascript' src="{{ asset('plugins/fullcalendar/fullcalendar.js') }}"></script>
+	<script type='text/javascript' src="{{ asset('plugins/fullcalendar/locale/es.js') }}"></script>
 
 </body>
 </html>

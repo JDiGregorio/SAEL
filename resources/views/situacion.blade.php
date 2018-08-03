@@ -4,12 +4,12 @@
 	<div style="margin:1px; width:700px;">
 		<hr>
 			<div id="left">
-				<img src="img/reservamini.png" class="img-fluid" alt="Responsive image">
+				<img src="img/estadomini.png" class="img-fluid" alt="Responsive image">
 			</div>
 			<div id="right" >
 				<img src="img/logomini.png" class="img-fluid" alt="Responsive image">
 			</div>
-			<h1 align="center">Reporte de reservación</h1>
+			<h1 align="center">Reporte de estado de pago de eventos</h1>
 			<h5 align="center">Sistemas Administrativo de Control de Eventos</h5>
 	</div>
 <hr>
@@ -18,10 +18,12 @@
 			<tr>
 				<th>Registro reservación</th>
 				<th>Cliente</th>
-				<th>Salones</th>
 				<th>Fecha de evento</th>
-				<th>Título de evento</th>
 				<th>Estado de evento</th>
+				<th>Costo total</th>
+				<th>Deposito</th>
+				<th>Pago</th>
+				<th>Saldo</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -36,12 +38,6 @@
 					</td>
 					
 					<td>
-						@foreach($evt->salones()->get() as $sl)
-								{{$sl->nombre}}
-						@endforeach
-					</td>
-					
-					<td>
 						@if(isset($evt['fecha_inicio']) && isset($evt['fecha_final']))
 							{{$evt['fecha_inicio']}}  a  {{$evt['fecha_final']}}
 						@elseif(isset($evt['fecha_inicio']) && isset($evt['fecha_final'])==null)
@@ -49,13 +45,35 @@
 						@endif	
 					</td>
 					
-					<td>{{$evt['titulo']}}</td>
-					
 					<td>
 						@if($evt['estado']===0)
 							Pendiente
 						@else
 							Realizado
+						@endif
+					</td>
+					
+					<td>
+						@if(isset($evt->costo_total))
+							{{$evt['costo_total']}}
+						@endif
+					</td>
+						
+					<td>
+						@if(isset($evt->monto_adelanto))
+							{{$evt['monto_adelanto']}}
+						@endif
+					</td>
+					
+					<td>
+						@if(isset($evt->pago_total))
+							{{$evt['pago_total']}}
+						@endif
+					</td>
+					
+					<td>
+						@if(isset($evt->saldo))
+							{{$evt['saldo']}}
 						@endif
 					</td>
 				</tr>

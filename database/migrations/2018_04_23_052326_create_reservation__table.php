@@ -17,7 +17,6 @@ class CreateReservationTable extends Migration
 			$table->boolean('estado')->nullable();
 			$table->integer('cliente_id')->unsigned()->nullable();
 			$table->integer('usuario_id')->unsigned()->nullable();
-			$table->integer('tipo')->nullable();
 			$table->integer('tipo_evento')->nullable();
 			$table->timestamps();
 			

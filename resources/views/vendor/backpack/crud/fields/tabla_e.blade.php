@@ -13,33 +13,46 @@
 		<table id="{{ $field['name'] }}-table" class="table table-striped">
 			<thead> 
 				<tr>
-					<th class="col-xs-2">Salones</th>
-					
+					<th class="col-xs-2">Código</th>
+					<th class="col-xs-2">Fecha elaboración</th>
+					<th class="col-xs-2">Institución</th>
+					<th class="col-xs-2">Valuador</th>	
 				</tr>
 			</thead>
 			<tbody>
-			@if ($cont > 0)
-				@foreach( $avaluos as $ava)
-							<tr>
-								<td><a href="/admin/equipo/{{ $ava->id }}/edit">{{$ava->salon()->get()->nombre}}</a></td>
-									
-								
-							</tr>
-				@endforeach
-			@else
-				@for ($i = 0; $i < 4; $i++)
-					<tr>	
-						@if($i === 0)
-								<td colspan="4">
-									<span>No hay Avaluos para este inmueble</span> 
-								</td>
-						@else
-								<td colspan="4">&nbsp;</td>
-						@endif
-					</tr>
-				@endfor
-			@endif
-    
+				@if ($cont > 0)
+					@foreach( $avaluos as $ava)
+								<tr>
+									<td><a href="/admin/avaluo/{{ $ava->id }}/edit">{{$ava['name']}}</a></td>
+										
+									<td>{{$ava['fecha_elaboracion']}}</td>
+										
+									<td>
+										@if(isset($ava->institucion_id))
+										{{$ava->institucion()->get()->first()->nombre}}
+										@endif
+									</td>
+										
+									<td>
+										@if(isset($ava->valuador_id))
+										{{$ava->valuador()->get()->first()->nombre}}
+										@endif
+									</td>
+								</tr>
+					@endforeach
+				@else
+					@for ($i = 0; $i < 4; $i++)
+						<tr>	
+							@if($i === 0)
+									<td colspan="4">
+										<span>No hay Avaluos para este inmueble</span> 
+									</td>
+							@else
+									<td colspan="4">&nbsp;</td>
+							@endif
+						</tr>
+					@endfor
+				@endif
 			</tbody>
 		</table>
 	</div>

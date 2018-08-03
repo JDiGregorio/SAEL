@@ -30,8 +30,15 @@ div.back-to-all a:hover{
 	width:250px;
 }
 
-.estilo{
+#calendarview {
 	width: 100%;
-	height: 850px;
+	margin: 0 auto;
 }
 
+#left {
+   float: left;
+}
+
+#right {
+	float: right;
+}

@@ -45,6 +45,9 @@ class ClienteCrudController extends CrudController
 			'name' => 'identidad',
 			'label' => 'Número de identidad',
 			'type' => 'text',
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-4',
+			],
 			'tab'=> 'Datos generales',
 		]);
 		
@@ -52,6 +55,9 @@ class ClienteCrudController extends CrudController
 			'name' => 'nombre',
 			'label' => 'Nombre de cliente',
 			'type' => 'text',
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-8',
+			],
 			'tab'=> 'Datos generales',
 		]);
 		
@@ -59,6 +65,10 @@ class ClienteCrudController extends CrudController
 			'name' => 'telefono',
 			'label' => 'Número de teléfono/celular',
 			'type' => 'text',
+			'prefix' => "N°.",
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-4',
+			],
 			'tab'=> 'Datos generales',
 		]);
 		
@@ -66,6 +76,9 @@ class ClienteCrudController extends CrudController
 			'name' => 'correo',
 			'label' => 'Correo',
 			'type' => 'email',
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-8',
+			],
 			'tab'=> 'Datos generales',
 		]);
 		

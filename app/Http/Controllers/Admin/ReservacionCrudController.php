@@ -8,6 +8,7 @@ use App\Http\Requests\ReservacionRequest as StoreRequest;
 use App\Http\Requests\ReservacionRequest as UpdateRequest;
 
 use App\Authorizable;
+use App\Models\Logistica;
 
 class ReservacionCrudController extends CrudController
 {
@@ -47,13 +48,6 @@ class ReservacionCrudController extends CrudController
 			'model' => "App\Models\Cliente",
 		]);
 		
-		$this->crud->addColumn([
-			'name' => 'estado',
-			'label' => 'Estado',
-			'type' => 'boolean',
-			'options' => [ 0 => 'Pendiente', 1 => 'Realizado'],
-		]);
-		
 		//--------------------------------------------------------------------------------------------------------------------------------------//
 		// 								                        D A T O S   G E N E R A L E S													//
 		//--------------------------------------------------------------------------------------------------------------------------------------//
@@ -64,7 +58,6 @@ class ReservacionCrudController extends CrudController
 			'type' => 'text',
 			'attributes' => [
 				'readonly' => 'readonly',
-				//'style' => 'font-size: 30px; height: 35px;',
 			],
 			'wrapperAttributes' => [
 				'class' => 'form-group col-md-12',
@@ -73,11 +66,36 @@ class ReservacionCrudController extends CrudController
 		], 'update');
 		
 		$this->crud->addField([
+			'label' => 'Tipo de evento',
+			'type' => 'select2',
+			'name' => 'evento_id',
+			'entity' => 'evento', 
+			'attribute' => 'name', 
+			'model' => 'App\Models\Evento',
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-5',
+			],
+			'tab' => 'Datos generales',
+		]);
+		
+		$this->crud->addField([
 			'name' => 'titulo',
 			'label' => 'Título de evento',
 			'type' => 'text',
 			'wrapperAttributes' => [
-				'class' => 'form-group col-md-12',
+				'class' => 'form-group col-md-5',
+			],
+			'tab' => 'Datos generales',
+		]);
+		
+		$this->crud->addField([
+			'label' => 'Color',
+			'name' => 'color',
+			'type' => 'color_picker',
+			'color_picker_options' => ['customClass' => 'custom-class'],
+			'default'=>'#00BFFF',
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-2',
 			],
 			'tab' => 'Datos generales',
 		]);
@@ -93,20 +111,6 @@ class ReservacionCrudController extends CrudController
 		],'update');
 		
 		$this->crud->addField([
-			'label' => 'Salones',
-			'type' => 'select2_multiple',
-			'name' => 'salones',
-			'entity' => 'salones',
-			'attribute' => 'nombre',
-			'model' => 'App\Models\Salon',
-			'pivot' => true,
-			'wrapperAttributes' => [
-				'class' => 'form-group col-md-12',
-			],
-			'tab' => 'Datos generales',
-		]);
-		
-		$this->crud->addField([
 			'label' => 'Cliente',
 			'type' => 'select2',
 			'name' => 'cliente_id',
@@ -120,28 +124,29 @@ class ReservacionCrudController extends CrudController
 		]);
 		
 		$this->crud->addField([
-			'name' => 'tipo',
-			'label' => "Tipo de acción",
-			'type' => 'select_from_array',
-			'options' => ['alquiler' => 'Alquiler', 'reservacion' => 'Reservación'],
-			'allows_null' => true,
-			'wrapperAttributes' => [
-				'class' => 'form-group col-md-6',
-			],
+			'name' => 'separator',
+			'type' => 'custom_html',
+			'value' => '<hr>',
 			'tab' => 'Datos generales',
 		]);
 		
 		$this->crud->addField([
-			'label' => 'Tipo de evento',
-			'type' => 'select2',
-			'name' => 'evento_id',
-			'entity' => 'evento', 
-			'attribute' => 'name', 
-			'model' => 'App\Models\Evento',
-			'wrapperAttributes' => [
-				'class' => 'form-group col-md-6',
+			'name'  => 'varios_dias',
+			'label' => '¿solo un día?',
+			'type'  => 'fieldhidden',
+			'options' => [
+                    0 => "Si",
+                    1 => "No",
+            ],
+			'inline' => true,
+			'hide_when' => [
+					0 => ['fecha_final'],
 			],
-			'tab' => 'Datos generales',
+			'default' => false,
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-12',
+			],
+			'tab' => 'Datos generales'
 		]);
 		
 		$this->crud->addField([
@@ -195,18 +200,7 @@ class ReservacionCrudController extends CrudController
 		]);
 		
 		$this->crud->addField([
-			'name' => 'monto_adelanto',
-			'label' => 'Depositó inicial',
-			'type' => 'number',
-			'wrapperAttributes' => [
-				'class' => 'form-group col-md-6',
-			],
-			'default'  =>  '0.00',
-			'tab' => 'Datos generales',
-		]);
-		
-		$this->crud->addField([
-			'name' => 'separator',
+			'name' => 'separator1',
 			'type' => 'custom_html',
 			'value' => '<hr>',
 			'tab' => 'Datos generales',
@@ -224,19 +218,215 @@ class ReservacionCrudController extends CrudController
 		//--------------------------------------------------------------------------------------------------------------------------------------//
 		
 		$this->crud->addField([
+			'label' => 'Salones',
+			'type' => 'select2_multiple',
+			'name' => 'salones',
+			'entity' => 'salones',
+			'attribute' => 'nombre',
+			'model' => 'App\Models\Salon',
+			'pivot' => true,
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-12',
+			],
+			'tab' => 'Logística',
+		]);
+		
+		$this->crud->addField([
+			'name' => 'separator3',
+			'type' => 'custom_html',
+			'value' => '<hr name="separator2">',
+			'tab' => 'Logística',
+		]);
+		
+		$this->crud->addField([
+			'name'  => 'decision',
+			'label' => '¿Servicio de mesas y sillas?',
+			'type'  => 'fieldhidden',
+			'options' => [
+                    0 => "Si",
+                    1 => "No",
+            ],
+			'inline' => true,
+			'hide_when' => [
+					1 => ['cantidad_mesas','cantidad_sillas','cafe'],
+			],
+			'default' => false,
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-12',
+			],
+			'tab' => 'Logística'
+		]);
+		
+		$this->crud->addField([
+			'name' => 'separator4',
+			'type' => 'custom_html',
+			'value' => '<hr name="separator2">',
+			'tab' => 'Logística',
+		]);
+		
+		$this->crud->addField([
+			'name' => 'cantidad_personas',
+			'label' => 'Cantidad de personas',
+			'type' => 'number',
+			'prefix' => "N°.",
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-10',
+			],
+			'tab' => 'Logística',
+		]);
+		
+		$this->crud->addField([
+			'name'        => 'audiovisual', 
+			'label'       => 'Equipo audiovisual', 
+			'type'        => 'radio',
+			'options'     => [
+								0 => "No",
+								1 => "Si"
+							],
+			'inline'      => true,
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-2',
+			],
+			'tab' => 'Logística',
+		]);
+		
+		$this->crud->addField([
+			'name' => 'cantidad_mesas',
+			'label' => 'Cantidad de mesas',
+			'type' => 'number',
+			'prefix' => "N°.",
+			'default'  =>  '0',
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-5',
+			],
+			'tab' => 'Logística',
+		]);
+		
+		$this->crud->addField([
+			'name' => 'cantidad_sillas',
+			'label' => 'Cantidad de sillas',
+			'type' => 'number',
+			'prefix' => "N°.",
+			'default'  =>  '0',
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-5',
+			],
+			'tab' => 'Logística',
+		]);
+		
+		$this->crud->addField([
+			'name'        => 'cafe', 
+			'label'       => 'Servicio de café', 
+			'type'        => 'radio',
+			'options'     => [
+								0 => "No",
+								1 => "Si"
+							],
+			'inline'      => true,
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-2',
+			],
+			'tab' => 'Logística',
+		]);
+		
+		$this->crud->addField([
+			'name' => 'separator5',
+			'type' => 'custom_html',
+			'value' => '<hr>',
+			'tab' => 'Logística',
+		]);
+		
+		$this->crud->addField([
 			'name' => 'observacion_2',
 			'label' => 'Observación',
 			'type' => 'textarea',
 			'tab' => 'Logística',
 		]);
 		
+		//--------------------------------------------------------------------------------------------------------------------------------------//
+		// 								                        		P A G O																	//
+		//--------------------------------------------------------------------------------------------------------------------------------------//
+		
+		$this->crud->addField([
+			'name' => 'costo_total',
+			'label' => 'Costo total',
+			'type' => 'number',
+			'prefix' => "L.",
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-12',
+			],
+			'tab' => 'Pago',
+		]);
+		
+		$this->crud->addField([
+			'name' => 'costo_total',
+			'label' => 'Costo total',
+			'type' => 'number',
+			'prefix' => "L.",
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-12',
+			],
+			'attributes' => [
+				'readonly' => 'readonly',
+			],
+			'tab' => 'Pago',
+		],'update');
+		
+		$this->crud->addField([
+			'name' => 'monto_adelanto',
+			'label' => 'Depositó inicial',
+			'type' => 'number',
+			'prefix' => "L.",
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-6',
+			],
+			'default'  =>  '0.00',
+			'tab' => 'Pago',
+		]);
+		
+		$this->crud->addField([
+			'name' => 'monto_adelanto',
+			'label' => 'Depositó inicial',
+			'type' => 'number',
+			'prefix' => "L.",
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-6',
+			],
+			'attributes' => [
+				'readonly' => 'readonly',
+			],
+			'default'  =>  '0.00',
+			'tab' => 'Pago',
+		],'update');
+		
+		$this->crud->addField([
+			'name' => 'pago_total',
+			'label' => 'Pago',
+			'type' => 'number',
+			'prefix' => "L.",
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-6',
+			],
+			'default'  =>  '0.00',
+			'tab' => 'Pago',
+		]);
+		
+		$this->crud->addField([
+			'name' => 'saldo',
+			'label' => 'Saldo',
+			'type' => 'number',
+			'prefix' => "L.",
+			'wrapperAttributes' => [
+				'class' => 'form-group col-md-12',
+			],
+			'attributes' => [
+				'readonly' => 'readonly',
+			],
+			'default'  =>  '0.00',
+			'tab' => 'Pago',
+		]);
+		
     }
-	
-	public function get_events()
-	{
-		$events = Reservacion::select("id","titulo as title","fecha_inicio as start","fecha_final as end","color")->get()->toArray();
-		return Response()->json($events);
-	}
 
     public function store(StoreRequest $request)
     {

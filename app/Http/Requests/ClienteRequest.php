@@ -16,7 +16,7 @@ class ClienteRequest extends FormRequest
     public function rules()
     {
         return [
-            'identidad' => 'required|min:13|max:15|unique:clientes,identidad,id',
+            'identidad' => 'required|min:13|max:15|unique:clientes,identidad,'. $this->id,
 			'nombre' => 'required'
         ];
     }
