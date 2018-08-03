@@ -16,8 +16,7 @@ class ClienteRequest extends FormRequest
     public function rules()
     {
         return [
-            'identidad' => 'required|min:15|max:17',
-            'identidad' => 'unique:clientes,identidad,id',
+            'identidad' => 'required|min:13|max:15|unique:clientes,identidad,'. $this->id,
 			'nombre' => 'required'
         ];
     }
@@ -31,6 +30,8 @@ class ClienteRequest extends FormRequest
     {
         return [
             'identidad.required' => 'Necesita agregar el número de identidad.',
+            'identidad.min' => 'La identidad debe tener al menos 13 caracteres.',
+            'identidad.max' => 'La identidad no puede tener más de 15 caracteres.',
             'identidad.unique' => 'Verifique el número de identidad este ya esta siendo utilizado.',
             'nombre.required' => 'Necesita agregar el nombre del cliente.',
         ];

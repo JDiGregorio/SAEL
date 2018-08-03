@@ -34,7 +34,9 @@
     <link rel="stylesheet" href="{{ asset('vendor/backpack/backpack.base.css') }}?v=2">
     <link rel="stylesheet" href="{{ asset('vendor/backpack/overlays/backpack.bold.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-
+	
+	<link rel="stylesheet" href="{{ asset('/plugins/fullcalendar/fullcalendar.css') }}">
+	
     @yield('after_styles')
     @stack('after_styles')
 
@@ -88,14 +90,26 @@
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-         @yield('header')
-
+        <!-- Dashboard -->
+        @yield('header')
+		
+		<!-- Calendario -->
+		@yield('head')
+		
+		<!-- Tabla estados -->
+		@yield('head_estado')
+		
         <!-- Main content -->
         <section class="content">
-
-          @yield('content')
-
+			<!-- Dashboard -->
+			@yield('content')
+			
+			<!-- Calendario -->
+			@yield('calendario')
+			
+			<!-- Tabla estados -->
+			@yield('tabla_estado')
+			
         </section>
         <!-- /.content -->
       </div>
@@ -119,10 +133,13 @@
     <!-- Bootstrap 3.3.7 -->
     <script src="{{ asset('vendor/adminlte') }}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="{{ asset('vendor/adminlte') }}/plugins/pace/pace.min.js"></script>
-    <script src="{{ asset('vendor/adminlte') }}/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    
+	<script src="{{ asset('vendor/adminlte') }}/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     {{-- <script src="{{ asset('vendor/adminlte') }}/bower_components/fastclick/lib/fastclick.js"></script> --}}
     <script src="{{ asset('vendor/adminlte') }}/dist/js/adminlte.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js" type="text/javascript"></script>
+	
+	<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 
     <!-- page script -->
     <script type="text/javascript">
@@ -167,11 +184,18 @@
     </script>
 
     @include('backpack::inc.alerts')
+	
 
+    @yield('scripts')
+    @yield('scripts_estado')
     @yield('after_scripts')
     @stack('after_scripts')
 
     <!-- JavaScripts -->
     {{-- <script src="{{ mix('js/app.js') }}"></script> --}}
+	<script type='text/javascript' src="{{ asset('plugins/fullcalendar/lib/moment.min.js') }}"></script>
+	<script type='text/javascript' src="{{ asset('plugins/fullcalendar/fullcalendar.js') }}"></script>
+	<script type='text/javascript' src="{{ asset('plugins/fullcalendar/locale/es.js') }}"></script>
+
 </body>
 </html>

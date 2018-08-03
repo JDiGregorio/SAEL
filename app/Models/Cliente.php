@@ -21,17 +21,22 @@ class Cliente extends Model
     // protected $primaryKey = 'id';
     public $timestamps = true;
     // protected $guarded = ['id'];
-    protected $fillable = ['identidad','nombre','descripcion','direccion','telefono','correo'];
+    protected $fillable = ['identidad','nombre','descripcion','direccion','telefono','correo','empresa','departamento_id','ciudad_id','detalles'];
     // protected $hidden = [];
     // protected $dates = [];
+	protected $guard_name = 'web';
 	
 	protected $revisionCreationsEnabled = true;
 	protected $revisionFormattedFieldNames = array(
 		'identidad' => 'identidad',
-		'nombre' => 'nombre',
-		'descripcion' => 'descripción',
+		'nombre' => 'nombre de cliente',
+		'descripcion' => 'observación',
 		'direccion'  => 'dirección',
 		'telefono'  => 'teléfono',
+		'empresa'  => 'nombre de empresa',
+		'departamento_id'  => 'departamento',
+		'ciudad_id'  => 'ciudad',
+		'detalles'  => 'más detalles',
 	);
 
     /*------------------------------------------------------------------------
@@ -55,6 +60,16 @@ class Cliente extends Model
 	public function reservaciones()
 	{
 		return $this-> hasMany('App\Models\Reservacion');
+	}
+	
+	public function departamento()
+	{
+		return $this->belongsTo('App\Models\Departamento');
+	}
+	
+	public function ciudad()
+	{
+		return $this->belongsTo('App\Models\Ciudad');
 	}
 	
     /*-------------------------------------------------------------------------

@@ -9,9 +9,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
-	use CrudTrait;
+    use CrudTrait;
     use HasRoles;
+	use Notifiable;
 	
 	protected $primaryKey = 'id';
 

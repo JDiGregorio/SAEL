@@ -22,7 +22,6 @@ class ModificacionTablaMenu extends Migration
 		Schema::table('reservaciones', function (Blueprint $table) {
            $table->integer('tipo_evento')->unsigned()->change();
 		   $table->boolean('estado')->default(False)->change();
-		   $table->string('tipo')->change();
         });
 		
 		Schema::table('reservaciones', function (Blueprint $table) {		   

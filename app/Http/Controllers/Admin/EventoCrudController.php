@@ -8,8 +8,11 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use App\Http\Requests\EventoRequest as StoreRequest;
 use App\Http\Requests\EventoRequest as UpdateRequest;
 
+use App\Authorizable;
+
 class EventoCrudController extends CrudController
 {
+	use Authorizable;
     public function setup()
     {
 

@@ -1,9 +1,6 @@
 <?php
-
 return [
-
     'backup' => [
-
         /* --------------------------------------
          * Backpack\BackupManager Command Flags
          * --------------------------------------
@@ -17,17 +14,13 @@ return [
          * --disable-notifications
          */
         'backpack_flags' => ['--disable-notifications'],
-
         /*
          * The name of this application. You can use this name to monitor
          * the backups.
          */
         'name' => env('APP_URL'),
-
         'source' => [
-
             'files' => [
-
                 /*
                  * The list of directories that should be part of the backup. You can
                  * specify individual files as well.
@@ -35,7 +28,6 @@ return [
                 'include' => [
                     base_path(),
                 ],
-
                 /*
                  * These directories will be excluded from the backup.
                  * You can specify individual files as well.
@@ -44,13 +36,11 @@ return [
                     base_path('vendor'),
                     storage_path('node_modules'),
                 ],
-
                 /*
                  * Determines if symlinks should be followed.
                  */
                 'followLinks' => false,
             ],
-
             /*
              * The names of the connections to the databases that should be part of the backup.
              * Currently only MySQL- and PostgreSQL-databases are supported.
@@ -59,19 +49,15 @@ return [
                 'mysql',
             ],
         ],
-
         /*
          * The database dump can be gzipped to decrease diskspace usage.
          */
         'gzip_database_dump' => false,
-
         'destination' => [
-
             /*
              * The filename prefix used for the backup zip file.
              */
             'filename_prefix' => 'credia_db',
-
             /*
              * The disk names on which the backups will be stored.
              */
@@ -81,7 +67,6 @@ return [
         ],
 		'temporary_directory' => storage_path('app/backup/'),
     ],
-
     /*
      * You can get notified when specific events occur. Out of the box you can use 'mail' and 'slack'.
      * For Slack you need to install guzzlehttp/guzzle.
@@ -90,7 +75,6 @@ return [
      * the `Spatie\Backup\Events` classes.
      */
     'notifications' => [
-
         'notifications' => [
             \Spatie\Backup\Notifications\Notifications\BackupHasFailed::class         => ['mail'],
             \Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFound::class => ['mail'],
@@ -99,33 +83,28 @@ return [
             \Spatie\Backup\Notifications\Notifications\HealthyBackupWasFound::class   => ['mail'],
             \Spatie\Backup\Notifications\Notifications\CleanupWasSuccessful::class    => ['mail'],
         ],
-
         /*
          * Here you can specify the notifiable to which the notifications should be sent. The default
          * notifiable will use the variables specified in this config file.
          */
         'notifiable' => \Spatie\Backup\Notifications\Notifiable::class,
-
         /*
          * Here you can specify how emails should be sent.
          */
         'mail' => [
             'to'   => 'your@email.com',
         ],
-
         /*
          * Here you can specify how messages should be sent to Slack.
          */
         'slack' => [
             'webhook_url' => '',
-
             /*
              * If this is set to null the default channel of the webhook will be used.
              */
             'channel' => null,
         ],
     ],
-
     /*
      * Here you can specify which backups should be monitored.
      * If a backup does not meet the specified requirements the
@@ -138,7 +117,6 @@ return [
             'newestBackupsShouldNotBeOlderThanDays'  => 1,
             'storageUsedMayNotBeHigherThanMegabytes' => 5000,
         ],
-
         /*
         [
             'name' => 'name of the second app',
@@ -148,7 +126,6 @@ return [
         ],
         */
     ],
-
     'cleanup' => [
         /*
          * The strategy that will be used to cleanup old backups. The default strategy
@@ -160,34 +137,27 @@ return [
          * delete the newest backup.
          */
         'strategy' => \Spatie\Backup\Tasks\Cleanup\Strategies\DefaultStrategy::class,
-
         'defaultStrategy' => [
-
             /*
              * The number of days for which backups must be kept.
              */
             'keepAllBackupsForDays' => 7,
-
             /*
              * The number of days for which daily backups must be kept.
              */
             'keepDailyBackupsForDays' => 16,
-
             /*
              * The number of weeks for which one weekly backup must be kept.
              */
             'keepWeeklyBackupsForWeeks' => 8,
-
             /*
              * The number of months for which one monthly backup must be kept.
              */
             'keepMonthlyBackupsForMonths' => 4,
-
             /*
              * The number of years for which one yearly backup must be kept.
              */
             'keepYearlyBackupsForYears' => 2,
-
             /*
              * After cleaning up the backups remove the oldest backup until
              * this amount of megabytes has been reached.
@@ -195,5 +165,4 @@ return [
             'deleteOldestBackupsWhenUsingMoreMegabytesThan' => 5000,
         ],
     ],
-
 ];

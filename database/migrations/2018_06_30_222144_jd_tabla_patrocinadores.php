@@ -28,7 +28,7 @@ class JdTablaPatrocinadores extends Migration
 
     public function down()
     {
-		Schema::drop('salon_reservacion');
+		Schema::drop('pag_evento_patrocinador');
         Schema::dropIfExists('patrocinadores');
     }
 }

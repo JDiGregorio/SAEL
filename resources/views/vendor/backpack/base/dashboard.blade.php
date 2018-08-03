@@ -23,6 +23,11 @@
 
                 <div class="box-body">{{ trans('backpack::base.logged_in') }}</div>
             </div>
+			
+			<div class="col-md-12" style="height:400px;width:100%;background: white;">
+				
+			</div>
         </div>
     </div>
 @endsection
+

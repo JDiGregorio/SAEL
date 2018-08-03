@@ -17,15 +17,17 @@ class Salon extends Model
     |------------------------------------------------------------------------*/
 
     protected $table = 'salones';
-    protected $fillable = ['nombre','descripcion','ubicacion','Max_personas'];
-	public $timestamps = false;
+	protected $casts = ['fotos' => 'array'];
+    protected $fillable = ['nombre','descripcion','ubicacion','fotografia'];
+	public $timestamps = true;
+	protected $guard_name = 'web';
 	
 	protected $revisionCreationsEnabled = true;
 	protected $revisionFormattedFieldNames = array(
 		'nombre' => 'nombre',
 		'description' => 'descripción',
 		'ubication'  => 'ubicación',
-		'Max_personas'  => 'cantidad de personas',
+		'fotografia'  => 'fotografía',
 	);
 
     /*-------------------------------------------------------------------------
@@ -35,6 +37,14 @@ class Salon extends Model
 	public static function boot()
     {
 		parent::boot();
+		
+		self::deleting(function($obj) {
+			if (count((array)$obj->fotos)) {
+				foreach ($obj->fotos as $file_path) {
+					\Storage::disk('public_folder')->delete($obj->image);
+				}
+			}
+		});
     }
 	
 	public function identifiableName()
@@ -49,7 +59,7 @@ class Salon extends Model
 	
 	public function reservaciones()
 	{
-		return $this->belongsToMany('App\Models\Reservacion');
+		return $this->belongsToMany('App\Models\Reservacion', 'reservacion_salon','salon_id');
 	}
 	
 	public function equipos()
@@ -68,4 +78,14 @@ class Salon extends Model
     /*-------------------------------------------------------------------------
     | MUTATORS
     |-------------------------------------------------------------------------*/
+	
+	public function setFotoAttribute($value)
+    {
+        $attribute_name = "fotografia";
+        $disk = "public";
+        $destination_path = "salon/fotos";
+
+        $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path);
+    }
+	
 }
